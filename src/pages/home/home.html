@@ -13,12 +13,12 @@
       <button ion-button (click)="login()">Login</button>
   </div>
   <div *ngIf="particle.token && particle.device">
-      <h5>Particle.io Device App </h5>
+      <h5>Test App</h5>
       <p>
-        This app demonstrates how to access a Particle.io device to display its state, read events, and call functions.
+        This app demonstrates how to access {{particle.device.name}} to display its state, read events, and call functions.
       </p>
       <!-- You can display different device states by checking particle.device -->
       <p *ngIf="!particle.device || !particle.device.connected">{{particle.device.name}} is offline</p>
-      <p *ngIf="particle.device && particle.device.connected">You are currently viewing {{particle.device.name}}</p>
+      <p *ngIf="particle.device && particle.device.connected">{{particle.device.name}} is online</p>
  </div>
 </ion-content>
