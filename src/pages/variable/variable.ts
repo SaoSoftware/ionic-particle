@@ -10,10 +10,13 @@ import { ParticleProvider } from '../../providers/particle/particle';
 })
 export class VariablePage {
 
-  public var1: any;                     // Contains the value of our cloud variable
+  public overallstatus: any;
+  public movement: any;        // Contains the value of our cloud variable
   public subscribed: boolean = false;
+  public subscribed2: boolean = false;
   public subscription: any = null;     // Maintains the subscription variable updates
- 
+  public subscription2: any = null;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public particle: ParticleProvider) {
   }
 
@@ -23,25 +26,37 @@ export class VariablePage {
     	this.login()
     }
   }
-  
+
   // Cancel any current subscriptions to our variable
   cancelSubscription() {
     if (this.subscription && this.subscription.cancel) {
         this.subscription.cancel();
     }
+    if (this.subscription2 && this.subscription2.cancel) {
+      this.subscription2.cancel();
+    }
     this.subscription = null;
+    this.subscription2 = null;
   }
-
+var1
   ionViewDidEnter() {
     // When entering the page, subscribe to updates to the Particle cloud varibale var1
     if (this.particle.device) {
         this.cancelSubscription();
-        this.subscription = this.particle.pollVariable("var1").subscribe(
-            (value) => { this.var1 = value; this.subscribed = true; },
-            (error) => { console.log("Error reading var1"); this.subscribed = false; },
-            () => { console.log("Stopped polling var1"); this.subscribed = false; }
+        this.subscription = this.particle.pollVariable("overallstatus").subscribe(
+            (value) => { this.overallstatus = value; this.subscribed = true; },
+            (error) => { console.log("Error reading overallstatus"); this.subscribed = false; },
+            () => { console.log("Stopped polling overallstatus"); this.subscribed = false; }
         );
-    } 
+
+        this.subscription2 = this.particle.pollVariable("movement").subscribe(
+            (value) => { this.movement= value; this.subscribed2 = true; },
+            (error) => { console.log("Error reading mvt"); this.subscribed2 = false; },
+            () => { console.log("Stopped polling mvt"); this.subscribed2 = false; }
+        );
+
+
+    }
   }
 
   login() {

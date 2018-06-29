@@ -9,7 +9,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Variables</ion-title>
+    <ion-title>SuperHat</ion-title>
   </ion-navbar>
 </ion-header>
 
@@ -33,13 +33,47 @@
             Finally, we can display the variable var1, which is defined in variable.ts
         -->
         <p>
-        The device variable "var1" is periodically polled, and the current value is {{var1}} 
+        Status : {{overallstatus}}
         </p>
+        <p>
+      Movement : {{movement}}
+        </p>
+
       </div>
+    </div>
       <!-- "If we were unable to poll the variable, display an error message -->
       <div *ngIf="!subscribed">
-            The device is offline or "var1" is unavailable.
+            <p>Status : Disconnected</p>
+       <p>Movement: ???</p>
       </div>
-  </div>
+
+<div *ngIf="overallstatus == 'DARK'" >
+      <img text-center src="/assets/img/night.png">
+      <p>It is dark outside! you should get to a building as soon as possible because it is hard to see outside, making you more vulnerable!</p>
+</div>
+
+<div *ngIf="overallstatus == 'ROOMLIGHT'" >
+  <img text-center src="/assets/img/room.png">
+      <p> You are detected to be currently in a room. The lights will automatically turn off by itself.</p>
+</div>
+
+<div *ngIf="overallstatus == 'SUNLIGHT'" >
+
+      <img text-center src="/assets/img/sun.png">
+      <p>You are under the sun! The sun may be bright and if that is the case, you should head home before you burn yourself.</p>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 </ion-content>

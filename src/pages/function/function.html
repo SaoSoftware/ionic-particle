@@ -31,12 +31,12 @@
         <p>
             You can call device functions from buttons
         </p>
-        <!-- The click directive uses particle.callFunction to call a cloud function -->
-        <button ion-button (click)="callFunction()">{{functionName}}</button>
+        <!-- {{functionName}} The click directive uses particle.callFunction to call a cloud function -->
+        <button ion-button (click)="callFunction()">Turn LED {{functionParameter}}</button>
       </ng-template>
       <ng-template #display_error>
           <p>
-            The device doesn't appear to have a function called 'fun1'
+            The device doesn't appear to have a function called 'led'
           </p>
       </ng-template>
   </div>
